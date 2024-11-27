@@ -27,9 +27,39 @@ public class ReceiverServiceImplTest {
         receiverRequest.setAddress("Address");
         receiverRequest.setPhoneNumber("phoneNumber");
         receiverService.createReceiver(receiverRequest);
-        System.out.println(receiverRepository.count());
         assertEquals(1, receiverRepository.count());
     }
+
+    @Test
+    public void testThatUserNameIsEmptyAndExceptionIsThrown() {
+        ReceiverRequest receiverRequest = new ReceiverRequest();
+        receiverRequest.setFullName("  ");
+        receiverRequest.setAddress("Address");
+        receiverRequest.setPhoneNumber("phoneNumber");
+        assertThrows(IllegalArgumentException.class, () ->receiverService.createReceiver(receiverRequest));
+    }
+
+
+    @Test
+    public void testThatAddressIsEmptyAndExceptionIsThrown() {
+        ReceiverRequest receiverRequest = new ReceiverRequest();
+        receiverRequest.setFullName("Femi");
+        receiverRequest.setAddress(" ");
+        receiverRequest.setPhoneNumber("phoneNumber");
+        assertThrows(IllegalArgumentException.class, () ->receiverService.createReceiver(receiverRequest));
+    }
+
+    @Test
+    public void testThatPhoneNumberIsEmptyAndExceptionIsThrown() {
+        ReceiverRequest receiverRequest = new ReceiverRequest();
+        receiverRequest.setFullName("Femi");
+        receiverRequest.setAddress("address");
+        receiverRequest.setPhoneNumber(" ");
+        assertThrows(IllegalArgumentException.class, () ->receiverService.createReceiver(receiverRequest));
+    }
+
+
+
 
 
 }

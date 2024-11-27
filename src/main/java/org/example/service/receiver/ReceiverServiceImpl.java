@@ -13,6 +13,17 @@ public class ReceiverServiceImpl implements ReceiverService {
 
     @Override
     public String createReceiver(ReceiverRequest receiverRequest) {
+        checkExceptions(receiverRequest);
+        return setFields(receiverRequest);
+    }
+
+    private void checkExceptions(ReceiverRequest receiverRequest){
+        if(receiverRequest.getFullName().isEmpty()|| receiverRequest.getFullName().isBlank()) throw new IllegalArgumentException("Name is empty");
+        if(receiverRequest.getAddress().isEmpty() || receiverRequest.getAddress().isBlank()) throw new IllegalArgumentException("Address is empty");
+        if(receiverRequest.getPhoneNumber().isEmpty() || receiverRequest.getPhoneNumber().isBlank()) throw new IllegalArgumentException("PhoneNumber is empty");
+    }
+
+    private String setFields(ReceiverRequest receiverRequest){
         Receiver receiver = new Receiver();
         receiver.setName(receiverRequest.getFullName());
         receiver.setAddress(receiverRequest.getAddress());
@@ -20,4 +31,6 @@ public class ReceiverServiceImpl implements ReceiverService {
         receiverRepository.save(receiver);
         return receiver.getId();
     }
+
+
 }
