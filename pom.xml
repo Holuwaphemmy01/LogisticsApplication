@@ -36,12 +36,21 @@
             <version>3.3.5</version>
         </dependency>
 
-        <!--&lt;!&ndash;         https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-actuator &ndash;&gt;-->
-        <!--        <dependency>-->
-        <!--            <groupId>org.springframework.boot</groupId>-->
-        <!--            <artifactId>spring-boot-starter-actuator</artifactId>-->
-        <!--            <version>3.3.5</version>-->
-        <!--        </dependency>-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <version>3.3.5</version>
+        </dependency>
+
+        <!-- https://mvnrepository.com/artifact/de.flapdoodle.embed/de.flapdoodle.embed.mongo -->
+        <dependency>
+            <groupId>de.flapdoodle.embed</groupId>
+            <artifactId>de.flapdoodle.embed.mongo</artifactId>
+            <version>4.18.0</version>
+            <scope>test</scope>
+        </dependency>
+
+
 
 
     </dependencies>
